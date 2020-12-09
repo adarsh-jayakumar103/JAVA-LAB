@@ -128,7 +128,7 @@ static{                                                                         
 	  }
   }
 }
-  synchronized static void printTable(Object[][] table){
+  synchronized static void printTable(Object[][] table){                      //thread synch
     for (final Object[] row : table) {
         System.out.format("%15s%15s\n", row);
         try{  
@@ -158,6 +158,7 @@ public static void main(String[] args) {
 	Scanner input3 = new Scanner(System.in);
 	Scanner input4 = new Scanner(System.in);
     String array[] = new String[10];
+    List<Integer> list = new ArrayList<Integer>();
     System.out.println("Main thread is- "+ Thread.currentThread().getName());                         //RUNNABLE INTERFACE
 	Thread t1=new Thread(new amazon().new RunnableImpl()); 
     t1.start(); 
@@ -173,7 +174,8 @@ public static void main(String[] args) {
 			System.out.println("Want to be a prime member for INR 129?:(Y/N)");
 			if(input3.next().startsWith("Y")){
 				total+=129;
-				array[i]="Amazon Prime";
+                array[i]="Amazon Prime";
+                list.add(129);  
 				i++;
 				break;
 			}
@@ -195,21 +197,25 @@ public static void main(String[] args) {
             	case 1: 
             	total+=56000;
                 array[i]="LG smart TV";
+                list.add(56000);
                 i++;
                 break;
             	case 2:
             	total+=24999;
-            	array[i]="One+ Nord";
+                array[i]="One+ Nord";
+                list.add(24999);
             	i++;
             	break;
             	case 3:
             	total+=32990;
-            	array[i]="Whirlpool WM";
+                array[i]="Whirlpool WM";
+                list.add(32990);
             	i++;
             	break;
             	case 4:
             	total+=1999;
-            	array[i]="Boat Speakers";
+                array[i]="Boat Speakers";
+                list.add(1999);
             	i++;
             	break;
             	default:
@@ -233,6 +239,8 @@ public static void main(String[] args) {
         for (int j = 0; j < n; j++) {
         	if(array[j]!= null)
             System.out.print(array[j] + "\n ");}
+            System.out.println("Value of maximum element from the collection: "+Collections.max(list));   //collection class
+            System.out.println("Value of minimum element from the collection: "+Collections.min(list));  
             
             if(total>10000){
                 try{
@@ -251,15 +259,6 @@ public static void main(String[] args) {
                     System.out.println(ex.getMessage());
                 }
             }
-
-    //     if(total<1000) {
-  	// 	System.out.println("Min order of 1000rs required!!\n");
-  	// }
-  	// else if (total>100000) {
-  	// 	System.out.println("Maximum cart value reached");
-
-  		
-  	//}
   	else{
   		System.out.println("\n\nYour Total amount payable:");
         System.out.println("\n--------------------------");
